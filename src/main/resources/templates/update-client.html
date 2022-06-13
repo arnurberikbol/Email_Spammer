@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(90deg, rgb(71, 77, 176), rgb(190, 55, 197));
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(45, 26, 68);
+        }
+
+        nav li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 3rem;
+            transition: background-color 0.5s ease-out;
+        }
+
+        nav li a:hover {
+            background-color: white;
+            color: black;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        form {
+            position: relative;
+            width: 20rem;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 1px 2px 4px black;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            width: 10rem;
+        }
+
+        .last {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: red;
+        }
+
+        .last button {
+            padding: 0.5rem 0.5rem;
+            width: 5rem;
+            background-color: rgb(45, 26, 68);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            box-shadow: 2px 2px 5px black;
+            cursor: pointer;
+        }
+
+        .last button:hover {
+            background-color: rgb(93, 71, 122);
+            color: white;
+        }
+    </style>
+    <title>Arnur project</title>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">All clients</a></li>
+            <li><a href="/addNewClient">Add new client</a></li>
+            <li><a href="/groups">All groups</a></li>
+            <li><a href="/addNewGroup">Add new group</a></li>
+            <li><a href="/messages">All messages</a></li>
+            <li><a href="/spam">Send message</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Update</h1>
+    <form th:action="@{/saveClient}" th:object="${client}" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{name}"
+                    id="name"
+                    placeholder="Enter name"
+                    required
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{surname}"
+                    id="surname"
+                    placeholder="Enter surname"
+                    required
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Email</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    th:field="*{email}"
+                    id="email"
+                    placeholder="Enter surname"
+                    required
+            />
+        </div>
+
+        <div class="last">
+            <td th:text="${exception}" class="hidden_one" style="color: red"></td>
+            <button type="submit">Submit</button>
+            <input type="hidden" class="form-control" th:field="*{id}"  id="id"  placeholder="" />
+        </div>
+    </form>
+</main>
+</body>
+</html>
